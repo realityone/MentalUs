@@ -1,0 +1,12 @@
+{% extends "general/base.html" %}
+{% import "macros.html" as macros %}
+{% set path_list = ['测试管理', '未完成测试'] %}
+
+{% block page_content %}
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        {{ macros.working_scale_panel(working_scale_list) }}
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        {{ macros.notstart_scale_panel(notstart_scales_pagination=notstart_scales_pagination, more_link=False) }}
+    </div>
+{% endblock %}

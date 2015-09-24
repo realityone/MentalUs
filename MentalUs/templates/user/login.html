@@ -1,0 +1,13 @@
+{% extends "general/base.html" %}
+{% import "macros.html" as macros %}
+{% set path_list = ['用户登录'] %}
+
+{% block page_content %}
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        {% for category, message in get_flashed_messages(with_categories=True) %}
+            {{ macros.flash_info(message, category) }}
+        {% endfor %}
+
+        {{ macros.login_panel(form) }}
+    </div>
+{% endblock %}

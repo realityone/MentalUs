@@ -1,0 +1,9 @@
+{% extends "general/base.html" %}
+{% import "macros.html" as macros %}
+{% set path_list = ['测试管理', '已完成测试'] %}
+
+{% block page_content %}
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        {{ macros.succeed_scale_panel(succeed_scales_pagination=succeed_scales_pagination) }}
+    </div>
+{% endblock %}

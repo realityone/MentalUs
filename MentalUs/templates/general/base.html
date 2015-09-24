@@ -1,0 +1,118 @@
+{% import "macros.html" as macros %}
+{% set dev_name = 'realityone' %}
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+    {% block head %}
+        <meta charset="UTF-8">
+        <title>{{ title }}</title>
+        {% block scripts %}
+            <script src="{{ url_for('static', filename='js/jquery-2.1.4.js') }}"></script>
+            <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.js') }}"></script>
+        {% endblock %}
+
+        {% block styles %}
+            <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.css') }}"/>
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+        {% endblock %}
+    {% endblock %}
+</head>
+
+<body>
+{% block body %}
+    <div class="page-header">
+        {% block page_header %}
+            {% block navbar %}
+                <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                    data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a href="{{ url_for('general.index') }}" class="navbar-brand">{{ title }}</a>
+                        </div>
+                        <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                {% block nav_left %}
+                                    <li><a href="{{ url_for('general.index') }}">首页</a></li>
+                                    {% if current_user.is_authenticated() %}
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">测试管理<span
+                                                    class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                {% block test_control %}
+                                                    {% block tc_over_divider %}
+                                                        <li><a href="{{ url_for('scale.unfinished') }}">未完成测试</a></li>
+                                                        <li><a href="{{ url_for('scale.succeed') }}">已完成测试</a></li>
+                                                    {% endblock %}
+                                                    <li class="divider"></li>
+                                                    {% block tc_under_divider %}
+                                                        <li><a href="{{ url_for('scale.apply') }}">申请测试</a></li>
+                                                    {% endblock %}
+                                                {% endblock %}
+                                            </ul>
+                                        </li>
+                                    {% endif %}
+                                {% endblock %}
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                {% block nav_right %}
+                                    {% if current_user.is_authenticated() %}
+                                        {% block user_control %}
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle"
+                                                   data-toggle="dropdown">{{ current_user.username }}<span
+                                                        class="caret"></span></a>
+                                                <ul class="dropdown-menu">
+                                                    {% block uc_over_divider %}
+                                                        <li><a href="{{ url_for('user.profile') }}">个人资料</a></li>
+                                                        <li><a href="{{ url_for('user.password') }}">修改密码</a></li>
+                                                    {% endblock %}
+                                                    <li class="divider"></li>
+                                                    {% block uc_under_divider %}
+                                                        <li><a href="{{ url_for('user.logout') }}">登出</a></li>
+                                                    {% endblock %}
+                                                </ul>
+                                            </li>
+                                        {% endblock %}
+                                    {% endif %}
+                                {% endblock %}
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            {% endblock %}
+        {% endblock %}
+    </div>
+
+    <div class="page-content">
+        <div class="container">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                {% if path_list %}
+                    {{ macros.breadcrumb_nav(path_list) }}
+                {% endif %}
+            </div>
+
+            {% block page_content %}
+                {#                define your content here#}
+            {% endblock %}
+        </div>
+    </div>
+
+    <div class="page-footer">
+        {% block page_footer %}
+            <div class="container container-fluid">
+                <h3>{{ title }}<span class="glyphicon glyphicon-envelope" style="padding: 5px;"></span>
+                    <small><b><a href="#">{{ dev_name }}</a></b></small>
+                </h3>
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}
+
+</body>
+</html>

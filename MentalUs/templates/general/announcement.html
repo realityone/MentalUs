@@ -1,0 +1,9 @@
+{% extends "general/base.html" %}
+{% import "macros.html" as macros %}
+{% set path_list = ['首页', '公告'] %}
+
+{% block page_content %}
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        {{ macros.announcement_panel(announcement_pagination=announcement_pagination) }}
+    </div>
+{% endblock %}

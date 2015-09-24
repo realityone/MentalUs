@@ -1,0 +1,46 @@
+.navbar-right {
+    padding-right: 30px;
+}
+
+body {
+    background-color: #f6f6f6;
+}
+
+.breadcrumb {
+    background-color: #ededed;
+}
+
+.page-footer {
+    padding-bottom: 40px;
+    margin-top: 50px;
+    color: #767676;
+    text-align: center;
+    border-top: 1px solid #e5e5e5;
+}
+
+.subject .question {
+    font-size: 35px;
+}
+
+.subject .answer {
+    padding-top: 13%;
+}
+
+.subject .answer table td {
+    font-size: 18px;
+    border-top: none !important;
+}
+
+.control {
+    padding-top: 3%;
+}
+
+.form-group span {
+    padding-right: 5px;
+    padding-left: 5px;;
+}
+
+#scale_detail .modal-body {
+    height: 500px;
+    overflow-y: auto;
+}

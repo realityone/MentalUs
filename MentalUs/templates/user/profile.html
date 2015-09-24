@@ -1,0 +1,35 @@
+{% extends "general/base.html" %}
+{% import "macros.html" as macros %}
+{% set path_list = ['用户管理', '个人信息'] %}
+
+{% block scripts %}
+    {{ super() }}
+    <script src="{{ url_for('static', filename='datetime/js/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ url_for('static', filename='datetime/locales/bootstrap-datepicker.zh-CN.min.js') }}"></script>
+{% endblock %}
+
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='datetime/css/bootstrap-datepicker3.css') }}"/>
+{% endblock %}
+
+{% block page_content %}
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        {% for category, message in get_flashed_messages(with_categories=True) %}
+            {{ macros.flash_info(message, category) }}
+        {% endfor %}
+    </div>
+
+    <form method="post" class="form-horizontal" role="form">
+        {{ form.hidden_tag() }}
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            {{ macros.user_base_panel(form) }}
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            {{ macros.user_extend_panel(form) }}
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            {{ form.submit(class='btn btn-warning btn-block') }}
+        </div>
+    </form>
+{% endblock %}

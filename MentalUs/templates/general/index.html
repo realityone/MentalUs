@@ -1,0 +1,24 @@
+{% extends "general/base.html" %}
+{% import "macros.html" as macros %}
+
+{% block page_content %}
+    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+        {{ macros.user_panel(current_user) }}
+    </div>
+
+    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+        {{ macros.announcement_panel(announcement_list=announcement_list, more_link=True) }}
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        {{ macros.working_scale_panel(working_list, more_link=True) }}
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        {{ macros.notstart_scale_panel(notstart_list, more_link=True) }}
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        {{ macros.succeed_scale_panel(succeed_list=succeed_list, more_link=True) }}
+    </div>
+{% endblock %}
